@@ -2,27 +2,20 @@
 
 > Testing Vite + [Rapier.js](https://www.rapier.rs/docs/user_guides/javascript/getting_started_js) (WASM) build
 
-This branch is using `"@dimforge/rapier3d": "^0.14.0"` and break in production build.
+This branch is using `"@dimforge/rapier3d": "^0.14.0"` + tree-shaking disabled.
 
-See branch `compat` for a fully working demo (uses `"@dimforge/rapier3d-compat": "^0.14.0"` instead)
+See branch `compat` for a fully working demo (uses `"@dimforge/rapier3d-compat": "^0.14.0"` instead).
 
-```
-import RAPIER from "@dimforge/rapier3d";
+Kudos: https://github.com/doppl3r/kinematic-character-controller-example/blob/master/vite.config.js#L9C2-L14C5
 
-(async () => {
-  const world = new RAPIER.World({ x: 0, y: -9.81, z: 0 });
-  console.log("World created:", world);
-})();
+```ts
+  build: {
+    emptyOutDir: true,
+    rollupOptions: {
+      treeshake: false,
+    },
+  },
 ```
 
 - `npm run dev` - OK
-- `npm run build` - FAILS (use `npm run preview` to load it)
-
-```
-Uncaught (in promise) TypeError: i is undefined
-```
-
-Notes:
-
-- the bundle `index.js` does not contain the inlined WASM code.
-- the `rapier_wasm3d_bg.wasm` file is generated in `dist/assets` (roughly 1.4MB) but never loaded
+- `npm run build` - OK
