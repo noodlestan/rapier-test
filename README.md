@@ -4,7 +4,10 @@
 
 This branch is using `"@dimforge/rapier3d": "^0.14.0"` and break in production build.
 
-See branch `compat` for a fully working demo (uses `"@dimforge/rapier3d-compat": "^0.14.0"` instead)
+See also:
+
+- branch `compat` - works, but uses `"@dimforge/rapier3d-compat": "^0.14.0"` instead.
+- branch `tree-shaking-disabled` works, but tree-shaking is disabled in rollup options
 
 ```
 import RAPIER from "@dimforge/rapier3d";
